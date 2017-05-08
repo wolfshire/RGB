@@ -1,0 +1,16 @@
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uilds/
+
+*.suo
+*.pidb
+*.userprefs
+*.sdf
+*.ipch
+*.opendb
+*.user
+
+*.dll*
+
+*.*~
