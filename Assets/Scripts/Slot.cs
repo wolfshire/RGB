@@ -8,6 +8,8 @@ public class Slot : MonoBehaviour {
 
 	private GameManager gm;
 
+	private GameObject held;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -35,12 +37,22 @@ public class Slot : MonoBehaviour {
 		{
 			if (collider.gameObject.GetComponent<Ball>().BallColor == correctBallColor)
 			{
-				Debug.Log("Yes");
-				//GameManager gm = FindObjectOfType<GameManager>();
+				held = collider.gameObject;
+				Destroy(held.GetComponent<Ball>());
+				Destroy(held.GetComponent<SphereCollider>());
+				
+				Player p = FindObjectOfType<Player>();
+				p.UnequipHeld();
+
+				Destroy(held.GetComponent<Rigidbody>());
+				held.transform.position = transform.position;
+
+				GameManager gm = FindObjectOfType<GameManager>();
+				gm.IncreaseScore();
 			}
 			else
 			{
-				Debug.Log("No");
+
 			}
 		}
 	}

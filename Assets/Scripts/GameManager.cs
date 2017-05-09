@@ -1,17 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
 	public GameObject Ball;
 	public GameObject Basketball;
+	public Text ScoreText;
 
 	private GameObject redSlot;
 	private GameObject greenSlot;
 	private GameObject blueSlot;
 
+	private GameObject correctSphere;
+
 	private Vector3 correctColor;
+
+	private int score = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +45,12 @@ public class GameManager : MonoBehaviour {
 		redSlot.GetComponent<Slot>().SetCorrectBallColor(new Vector3(correctColor.x, 0, 0));
 		greenSlot.GetComponent<Slot>().SetCorrectBallColor(new Vector3(0, correctColor.y, 0));
 		blueSlot.GetComponent<Slot>().SetCorrectBallColor(new Vector3(0, 0, correctColor.z));
+
+		ScoreText.text = "Score: " + score;
+
+		correctSphere = GameObject.Find("CorrectSphere");
+		correctSphere.GetComponent<Renderer>().material.color = new Color (correctColor.x / 255, correctColor.y / 255, correctColor.z / 255);
+
 	}
 	
 	// Update is called once per frame
@@ -54,13 +66,14 @@ public class GameManager : MonoBehaviour {
 	private void SpawnBall(Color color)
 	{
 		GameObject newBall = Instantiate(Ball, transform.position + new Vector3(Random.Range(-20f, 20f), Random.Range(10f, 50f), Random.Range(-20f, 20f)), Quaternion.identity);
-
-		MeshRenderer gameObjectRenderer = newBall.GetComponent<MeshRenderer>();
-		Material newMaterial = new Material(Shader.Find("Standard"));
-		newMaterial.color = color;
-		gameObjectRenderer.material = newMaterial;
-
+		newBall.GetComponent<Renderer>().material.color = color;
 		newBall.GetComponent<Ball>().BallColor = new Vector3(color.r * 255, color.g * 255, color.b * 255);
 		newBall.name = "(" + color.r * 255 + "," + color.g * 255 + "," + color.b * 255 + ")";
+	}
+
+	public void IncreaseScore()
+	{
+		score++;
+		ScoreText.text = "Score: " + score;
 	}
 }

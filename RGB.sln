@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RGB", "RGB.csproj", "{32B774D7-5618-28A3-ED51-C307E26B5167}"
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rgb", "rgb.csproj", "{32B774D7-5618-28A3-ED51-C307E26B5167}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
